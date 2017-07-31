@@ -11,7 +11,7 @@ probabilities=[]                                                              # 
 loss=0.0
 
 lstm = tf.contrib.rnn.BasicLSTMCell(state_size)  # state information
-drop = tf.contrib.rnn.DropoutWrapper(lstm, output_keep_prob=0.5)
+drop = tf.contrib.rnn.DropoutWrapper(lstm, output_keep_prob=0.5)  # implementing dropout with keep probability of 0.5 .
 cell = tf.contrib.rnn.MultiRNNCell([drop]) # cell information along with state information
 """cell = tf.contrib.rnn.MultiRNNCell([drop] * lstm_layers) """ 
 

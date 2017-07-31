@@ -2,8 +2,8 @@ import tensorflow as tf
 import numpy as np
 
 state_size=100 # size of hidden state vector of LSTM.
-batch_size=1   # number of batches.
-sequence_len=10 # length of sequence to be taken by LSTM.
+batch_size=2   # number of batches.
+sequence_len=5 # length of sequence to be taken by LSTM.
 embedding_len=4 # length of embedding used.
 
 input_data=tf.placeholder(tf.float32,[batch_size,sequence_len,embedding_len]) # input data dimension: 
@@ -23,11 +23,15 @@ outputs, final_st = tf.nn.dynamic_rnn(cell,input_data,initial_state=initial_stat
 
 ## implementing session
 
-tmp_data=np.array([[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,0,1,1],[0,1,0,0],[0,1,0,1],[0,1,1,0],[0,1,1,1],[1,0,0,0],[1,0,0,1]]]) # input data defined.
+tmp_data=np.array([[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,0,1,1],[0,1,0,0]],[[0,1,0,1],[0,1,1,0],[0,1,1,1],[1,0,0,0],[1,0,0,1]]]) # input data defined.
 
 with tf.Session() as sess:
   sess.run(tf.global_variables_initializer())
-  output_list,final_state=sess.run([outputs,final_st],feed_dict={ input_data:tmp_data}) # get output and final state.
-  # output_list will have all the outputs , so to get final output produced by LSTM ... use  output_list [-1].
-  print(output_list[-1])
-  
+  output_list,final_state=sess.run([outputs,final_st],feed_dict={ input_data:tmp_data}) # prints the final output
+  # output_list will have all the outputs , so to get final output produced by LSTM ... use  output_list [batch_number][-1].
+  # here [0] represent the first batch, and [-1] represents the last output of that batch.
+  print(output_list[0][-1]) 
+  # here [1] represent the second batch, and [-1] represents the last output of that batch.
+  print(output_list[1][-1])
+  # complete list of output
+  print("\n**********\n", output_list)

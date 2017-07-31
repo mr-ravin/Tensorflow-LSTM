@@ -27,7 +27,7 @@ tmp_data=np.array([[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,0,1,1],[0,1,0,0],[0,1,0,1],
 
 with tf.Session() as sess:
   sess.run(tf.global_variables_initializer())
-  output_list,final_state=sess.run([outputs,final_st],feed_dict={ input_data:tmp_data}) # prints the final output
+  output_list,final_state=sess.run([outputs,final_st],feed_dict={ input_data:tmp_data}) # get output and final state.
   # output_list will have all the outputs , so to get final output produced by LSTM ... use  output_list [-1].
   print(output_list[-1])
   

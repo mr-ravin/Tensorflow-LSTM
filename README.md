@@ -3,4 +3,4 @@ This includes a program written in python for implementing LSTM in tensorflow.
 
 #### Developer: [Ravin Kumar](https://mr-ravin.github.io)
 
-##### Written in Tensorflow: 1.2
+##### Written in Tensorflow: 1.12
